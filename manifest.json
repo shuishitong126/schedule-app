@@ -1,0 +1,21 @@
+{
+  "name": "日程安排助手",
+  "short_name": "日程助手",
+  "description": "一个功能强大的日程安排应用",
+  "start_url": "/test.html",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#17a2b8",
+  "icons": [
+    {
+      "src": "https://via.placeholder.com/192",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "https://via.placeholder.com/512",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
