@@ -577,10 +577,26 @@
             schedules.push(schedule);
             input.value = '';
             
+            // 保存到本地存储
+            saveSchedulesToLocalStorage();
+            
             generateCalendar();
             updateSchedules();
             // 重新设置提醒，确保新添加的日程也能被提醒
             setupReminders();
+        }
+        
+        // 保存日程到本地存储
+        function saveSchedulesToLocalStorage() {
+            localStorage.setItem('schedules', JSON.stringify(schedules));
+        }
+        
+        // 从本地存储加载日程
+        function loadSchedulesFromLocalStorage() {
+            const savedSchedules = localStorage.getItem('schedules');
+            if (savedSchedules) {
+                schedules = JSON.parse(savedSchedules);
+            }
         }
         
         function updateSchedules() {
@@ -766,6 +782,9 @@
             schedules[currentEditingIndex].date = date;
             schedules[currentEditingIndex].time = time;
             
+            // 保存到本地存储
+            saveSchedulesToLocalStorage();
+            
             // 隐藏编辑表单
             document.getElementById('edit-form').style.display = 'none';
             // 重置编辑索引
@@ -802,6 +821,8 @@
             );
             if (scheduleIndex !== -1) {
                 schedules.splice(scheduleIndex, 1);
+                // 保存到本地存储
+                saveSchedulesToLocalStorage();
                 // 重新生成日历和更新日程列表
                 generateCalendar();
                 updateSchedules();
@@ -847,6 +868,8 @@
         
         // 初始化
         function init() {
+            // 从本地存储加载日程
+            loadSchedulesFromLocalStorage();
             generateCalendar();
             updateSchedules();
             initVoiceRecognition();
